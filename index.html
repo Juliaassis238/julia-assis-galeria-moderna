@@ -1,46 +1,3 @@
-python3 << 'EOFILE'
-import os
-import base64
-
-upload_dir = "/mnt/user-data/uploads"
-files = sorted([f for f in os.listdir(upload_dir) if f.lower().endswith(('.png', '.jpeg', '.jpg'))])
-
-projects = {
-    "70da473c-1b17-4e80-8a6b-6d9524937974.png": "Simples Fresco",
-    "b2b53c50-99a6-4847-b830-575ade29edfb.png": "Feito com Amor",
-    "79d095f8-616d-49d7-b65d-cc1f18a29cc9.png": "Sorriso Merece Melhor",
-    "bee6018d-8c8f-4474-bf8e-9663c8b05217.png": "Lealdade que Inspira",
-    "8ae61bd2-c1fd-4fc3-8dbf-7ebc7dfe886c.png": "Essência",
-    "5aba3c77-b49e-463c-a5cb-ff43bb6a9a1c.png": "Construo Hoje",
-    "dee29434-d066-4ca4-bf14-9912ed943241.png": "Designs Personalizados",
-    "9886CE0A-0D45-459C-AE3D-4C1A86D5BDCC.png": "Word Tecnologia",
-    "IMG_3205.jpeg": "BC Express",
-    "arte_neutra_dentistas_24hs.jpeg": "Dentistas 24hs",
-    "Personalizados.png": "Luxury Mindset",
-    "Designs_personalizados.png": "Design Studio",
-    "Designs.png": "Creative Collections",
-    "Feliz.png": "Happy Designs",
-    "GOLDEN_HOUR.png": "Golden Hour",
-    "Maximalismo.png": "Maximalism",
-    "Edic_o_es_personalizadas.jpeg": "Custom Editions",
-    "Blue_Futuristic_and_Modern_Artificial_Intelligence_Marketing_Webinar_Instagram_Post_zip_-_Portugue_s__Brasil_.png": "AI Marketing",
-    "Blue_Illustrative_Technology_Innovation_Poster__Post_para_Instagram__45__.png": "Tech Innovation"
-}
-
-images_b64 = {}
-for filename in files:
-    file_path = os.path.join(upload_dir, filename)
-    try:
-        with open(file_path, 'rb') as f:
-            data = f.read()
-            b64 = base64.b64encode(data).decode('utf-8')
-        mime = 'image/png' if filename.lower().endswith('.png') else 'image/jpeg'
-        images_b64[filename] = f"data:{mime};base64,{b64}"
-    except Exception as e:
-        print(f"Error: {e}")
-
-# LAYOUT 2: GALERIA DE ARTE MODERNA ASSIMÉTRICA
-layout2 = '''<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -538,21 +495,121 @@ layout2 = '''<!DOCTYPE html>
                 </div>
             </div>
             <div class="gallery-master">
-'''
-
-for filename in files:
-    if filename in projects:
-        project_name = projects[filename]
-        img_data = images_b64[filename]
-        layout2 += f'''                <div class="gallery-item">
-                    <img src="{img_data}" alt="{project_name}" class="gallery-image">
+                <div class="gallery-item">
+                    <img src="https://picsum.photos/seed/1/800/800" alt="Simples Fresco" class="gallery-image">
                     <div class="gallery-overlay">
-                        <div class="gallery-label">{project_name}</div>
+                        <div class="gallery-label">Simples Fresco</div>
                     </div>
                 </div>
-'''
-
-layout2 += '''            </div>
+                <div class="gallery-item">
+                    <img src="https://picsum.photos/seed/2/800/800" alt="Feito com Amor" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-label">Feito com Amor</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://picsum.photos/seed/3/800/800" alt="Sorriso Merece Melhor" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-label">Sorriso Merece Melhor</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://picsum.photos/seed/4/800/800" alt="Lealdade que Inspira" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-label">Lealdade que Inspira</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://picsum.photos/seed/5/800/800" alt="Essência" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-label">Essência</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://picsum.photos/seed/6/800/800" alt="Construo Hoje" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-label">Construo Hoje</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://picsum.photos/seed/7/800/800" alt="Designs Personalizados" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-label">Designs Personalizados</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://picsum.photos/seed/8/800/800" alt="Word Tecnologia" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-label">Word Tecnologia</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://picsum.photos/seed/9/800/800" alt="BC Express" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-label">BC Express</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://picsum.photos/seed/10/800/800" alt="Dentistas 24hs" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-label">Dentistas 24hs</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://picsum.photos/seed/11/800/800" alt="Luxury Mindset" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-label">Luxury Mindset</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://picsum.photos/seed/12/800/800" alt="Design Studio" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-label">Design Studio</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://picsum.photos/seed/13/800/800" alt="Creative Collections" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-label">Creative Collections</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://picsum.photos/seed/14/800/800" alt="Happy Designs" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-label">Happy Designs</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://picsum.photos/seed/15/800/800" alt="Golden Hour" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-label">Golden Hour</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://picsum.photos/seed/16/800/800" alt="Maximalism" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-label">Maximalism</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://picsum.photos/seed/17/800/800" alt="Custom Editions" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-label">Custom Editions</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://picsum.photos/seed/18/800/800" alt="AI Marketing" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-label">AI Marketing</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://picsum.photos/seed/19/800/800" alt="Tech Innovation" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-label">Tech Innovation</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -628,4 +685,3 @@ layout2 += '''            </div>
         });
     </script>
 </body>
-</html>
