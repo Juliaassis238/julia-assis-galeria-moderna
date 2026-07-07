@@ -1,0 +1,631 @@
+python3 << 'EOFILE'
+import os
+import base64
+
+upload_dir = "/mnt/user-data/uploads"
+files = sorted([f for f in os.listdir(upload_dir) if f.lower().endswith(('.png', '.jpeg', '.jpg'))])
+
+projects = {
+    "70da473c-1b17-4e80-8a6b-6d9524937974.png": "Simples Fresco",
+    "b2b53c50-99a6-4847-b830-575ade29edfb.png": "Feito com Amor",
+    "79d095f8-616d-49d7-b65d-cc1f18a29cc9.png": "Sorriso Merece Melhor",
+    "bee6018d-8c8f-4474-bf8e-9663c8b05217.png": "Lealdade que Inspira",
+    "8ae61bd2-c1fd-4fc3-8dbf-7ebc7dfe886c.png": "Essência",
+    "5aba3c77-b49e-463c-a5cb-ff43bb6a9a1c.png": "Construo Hoje",
+    "dee29434-d066-4ca4-bf14-9912ed943241.png": "Designs Personalizados",
+    "9886CE0A-0D45-459C-AE3D-4C1A86D5BDCC.png": "Word Tecnologia",
+    "IMG_3205.jpeg": "BC Express",
+    "arte_neutra_dentistas_24hs.jpeg": "Dentistas 24hs",
+    "Personalizados.png": "Luxury Mindset",
+    "Designs_personalizados.png": "Design Studio",
+    "Designs.png": "Creative Collections",
+    "Feliz.png": "Happy Designs",
+    "GOLDEN_HOUR.png": "Golden Hour",
+    "Maximalismo.png": "Maximalism",
+    "Edic_o_es_personalizadas.jpeg": "Custom Editions",
+    "Blue_Futuristic_and_Modern_Artificial_Intelligence_Marketing_Webinar_Instagram_Post_zip_-_Portugue_s__Brasil_.png": "AI Marketing",
+    "Blue_Illustrative_Technology_Innovation_Poster__Post_para_Instagram__45__.png": "Tech Innovation"
+}
+
+images_b64 = {}
+for filename in files:
+    file_path = os.path.join(upload_dir, filename)
+    try:
+        with open(file_path, 'rb') as f:
+            data = f.read()
+            b64 = base64.b64encode(data).decode('utf-8')
+        mime = 'image/png' if filename.lower().endswith('.png') else 'image/jpeg'
+        images_b64[filename] = f"data:{mime};base64,{b64}"
+    except Exception as e:
+        print(f"Error: {e}")
+
+# LAYOUT 2: GALERIA DE ARTE MODERNA ASSIMÉTRICA
+layout2 = '''<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Júlia Assis - Galeria</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Inter:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: #f0f0f0;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #3a3a3a;
+            border-radius: 5px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(240, 240, 240, 0.08);
+            padding: 2rem 0;
+        }
+
+        nav {
+            max-width: 1900px;
+            margin: 0 auto;
+            padding: 0 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            letter-spacing: 4px;
+            color: #f0f0f0;
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 5rem;
+        }
+
+        nav a {
+            color: #f0f0f0;
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            position: relative;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: #f0f0f0;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        nav a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 1000px;
+            height: 1000px;
+            background: radial-gradient(circle, rgba(240, 240, 240, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+        }
+
+        .hero-content {
+            text-align: left;
+            z-index: 2;
+            max-width: 900px;
+            padding: 4rem;
+        }
+
+        h1 {
+            font-size: 7rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 1.5rem;
+            line-height: 0.9;
+            color: #f0f0f0;
+        }
+
+        .tagline {
+            font-size: 1.15rem;
+            letter-spacing: 3px;
+            margin-bottom: 4rem;
+            font-weight: 300;
+            color: #b0b0b0;
+            text-transform: uppercase;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.5rem 4rem;
+            background: transparent;
+            color: #f0f0f0;
+            text-decoration: none;
+            letter-spacing: 3px;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            border: 1px solid #f0f0f0;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #f0f0f0;
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .cta-button:hover::before {
+            left: 0;
+        }
+
+        .cta-button:hover {
+            color: #0a0a0a;
+        }
+
+        .section {
+            padding: 10rem 4rem;
+        }
+
+        .container {
+            max-width: 1900px;
+            margin: 0 auto;
+        }
+
+        .section-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 5rem;
+        }
+
+        .section-info {
+            max-width: 400px;
+        }
+
+        .section-title {
+            font-size: 4.5rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: #f0f0f0;
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        .section-subtitle {
+            font-size: 0.95rem;
+            color: #888;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 400;
+            max-width: 300px;
+        }
+
+        .gallery-master {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: repeat(4, 200px);
+            gap: 1.5rem;
+            grid-auto-flow: dense;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            background: #1a1a1a;
+            cursor: pointer;
+            border: 1px solid rgba(240, 240, 240, 0.1);
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            grid-column: auto;
+            grid-row: span 1;
+        }
+
+        .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+        .gallery-item:nth-child(2) { grid-column: span 1; grid-row: span 2; }
+        .gallery-item:nth-child(3) { grid-column: span 1; }
+        .gallery-item:nth-child(4) { grid-column: span 1; }
+        .gallery-item:nth-child(5) { grid-column: span 1; }
+        .gallery-item:nth-child(6) { grid-column: span 1; grid-row: span 2; }
+        .gallery-item:nth-child(7) { grid-column: span 2; }
+        .gallery-item:nth-child(8) { grid-column: span 2; grid-row: span 2; }
+        .gallery-item:nth-child(9) { grid-column: span 1; }
+        .gallery-item:nth-child(10) { grid-column: span 1; }
+        .gallery-item:nth-child(11) { grid-column: span 1; grid-row: span 2; }
+        .gallery-item:nth-child(12) { grid-column: span 1; }
+        .gallery-item:nth-child(13) { grid-column: span 1; }
+        .gallery-item:nth-child(14) { grid-column: span 2; }
+        .gallery-item:nth-child(15) { grid-column: span 1; }
+        .gallery-item:nth-child(16) { grid-column: span 1; }
+        .gallery-item:nth-child(17) { grid-column: span 2; }
+        .gallery-item:nth-child(18) { grid-column: span 1; }
+        .gallery-item:nth-child(19) { grid-column: span 2; grid-row: span 2; }
+
+        .gallery-item:hover {
+            border-color: rgba(240, 240, 240, 0.4);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+            transform: translateY(-8px);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.6s ease, filter 0.6s ease;
+        }
+
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.08);
+            filter: brightness(1.15);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(10, 10, 10, 0) 0%, rgba(10, 10, 10, 0.7) 100%);
+            display: flex;
+            align-items: flex-end;
+            padding: 2rem;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-label {
+            font-size: 1rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            color: #f0f0f0;
+            letter-spacing: 1px;
+        }
+
+        .about {
+            background: #0a0a0a;
+            padding: 8rem 4rem;
+            border-top: 1px solid rgba(240, 240, 240, 0.08);
+        }
+
+        .about-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+        }
+
+        .about-left h2 {
+            font-size: 3.5rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+            color: #f0f0f0;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .about-left p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #bbb;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .services-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-item {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(240, 240, 240, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .service-item:last-child {
+            border-bottom: none;
+        }
+
+        .service-name {
+            font-size: 1.1rem;
+            font-family: 'Playfair Display', serif;
+            color: #f0f0f0;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .service-item p {
+            font-size: 0.95rem;
+            color: #999;
+            font-weight: 300;
+        }
+
+        footer {
+            background: #0a0a0a;
+            border-top: 1px solid rgba(240, 240, 240, 0.08);
+            padding: 6rem 4rem;
+        }
+
+        .footer-wrapper {
+            max-width: 1900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .footer-section h3 {
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+            color: #f0f0f0;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .footer-text {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: #bbb;
+            font-weight: 300;
+        }
+
+        .contact-footer {
+            text-align: left;
+        }
+
+        .contact-footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-footer strong {
+            color: #f0f0f0;
+            font-weight: 600;
+        }
+
+        .whatsapp-link {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1rem 2.5rem;
+            background: transparent;
+            color: #f0f0f0;
+            text-decoration: none;
+            letter-spacing: 2px;
+            font-weight: 600;
+            border: 1px solid #f0f0f0;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            transition: all 0.4s ease;
+        }
+
+        .whatsapp-link:hover {
+            background: #f0f0f0;
+            color: #0a0a0a;
+        }
+
+        .footer-bottom {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(240, 240, 240, 0.1);
+            font-size: 0.85rem;
+            color: #777;
+            letter-spacing: 1px;
+            font-weight: 300;
+        }
+
+        @media (max-width: 1200px) {
+            h1 { font-size: 4.5rem; }
+            .section-title { font-size: 3rem; }
+            .gallery-master { grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(auto, 150px); }
+            .gallery-item { grid-column: span 1; grid-row: span 1; }
+            .footer-wrapper { grid-template-columns: 1fr; }
+            .footer-bottom { grid-column: 1; }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 3rem; }
+            .tagline { font-size: 0.95rem; }
+            .section-title { font-size: 2rem; }
+            .section { padding: 5rem 2rem; }
+            nav { padding: 0 1.5rem; }
+            nav ul { gap: 2rem; }
+            .gallery-master { grid-template-columns: 1fr; gap: 1rem; }
+            .gallery-item { grid-column: 1 !important; grid-row: auto !important; aspect-ratio: 1; }
+            .about-wrapper { grid-template-columns: 1fr; gap: 3rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Júlia Assis</div>
+            <ul>
+                <li><a href="#galeria">Galeria</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Galeria de Arte Visual</h1>
+            <p class="tagline">Criações que exploram design, cor e narrativa</p>
+            <a href="#galeria" class="cta-button">Explorar Trabalhos</a>
+        </div>
+    </section>
+
+    <section id="galeria" class="section">
+        <div class="container">
+            <div class="section-top">
+                <div class="section-info">
+                    <h2 class="section-title">Obra</h2>
+                    <p class="section-subtitle">Seleção de projetos que refletem pesquisa visual, inovação criativa e execução impecável</p>
+                </div>
+            </div>
+            <div class="gallery-master">
+'''
+
+for filename in files:
+    if filename in projects:
+        project_name = projects[filename]
+        img_data = images_b64[filename]
+        layout2 += f'''                <div class="gallery-item">
+                    <img src="{img_data}" alt="{project_name}" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-label">{project_name}</div>
+                    </div>
+                </div>
+'''
+
+layout2 += '''            </div>
+        </div>
+    </section>
+
+    <section id="sobre" class="about">
+        <div class="container">
+            <div class="about-wrapper">
+                <div class="about-left">
+                    <h2>Sobre a Prática</h2>
+                    <p>Sou artista gráfica especializada em criar trabalhos visuais que transitam entre design estratégico e experimentação criativa. Cada projeto é resultado de pesquisa profunda sobre marca, público e contexto visual contemporâneo.</p>
+                    <p>Meu trabalho busca alcançar excelência estética sem abrir mão da funcionalidade, combinando rigor conceitual com liberdade artística.</p>
+                </div>
+                <div class="about-right">
+                    <h3 style="font-size: 1.1rem; color: #f0f0f0; margin-bottom: 2rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600;">Áreas de Trabalho</h3>
+                    <div class="services-list">
+                        <div class="service-item">
+                            <div class="service-name">Design Gráfico</div>
+                            <p>Criações autorais, projetos comerciais e trabalhos conceituais</p>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-name">Identidade de Marca</div>
+                            <p>Sistemas visuais coesos com personalidade e relevância</p>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-name">Direção Criativa</div>
+                            <p>Conceitos visuais estratégicos e execução elevada</p>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-name">Design de Interface</div>
+                            <p>Experiências digitais imersivas e funcionais</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato">
+        <footer>
+            <div class="footer-wrapper">
+                <div class="footer-section">
+                    <h3>Contato</h3>
+                    <div class="contact-footer">
+                        <p><strong>Júlia Assis</strong></p>
+                        <p>Artista Gráfica e Designer</p>
+                        <p style="margin-top: 1rem;">Araxá, MG</p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Informações</h3>
+                    <p class="footer-text">Designer criativa com foco em projetos que transformam marcas e exploram novas formas de comunicação visual.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Colaboração</h3>
+                    <p class="footer-text">Disponível para projetos, parcerias e consultorias criativas.</p>
+                    <a href="https://wa.me/5534988086470?text=Olá%20Júlia,%20gostaria%20de%20conhecer%20seus%20serviços!" class="whatsapp-link">WhatsApp</a>
+                </div>
+                <div class="footer-bottom">
+                    <p>© 2024 Júlia Assis. Todos os direitos reservados.</p>
+                </div>
+            </div>
+        </footer>
+    </section>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
