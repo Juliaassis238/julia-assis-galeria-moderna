@@ -1,9 +1,11 @@
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Júlia Assis - Galeria</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Inter:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="description" content="Júlia Assis - Galeria de Design Premium e Arte Visual">
+    <title>Júlia Assis - Galeria Moderna Premium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Inter:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,6 +15,8 @@
 
         html {
             scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         body {
@@ -21,10 +25,11 @@
             color: #f0f0f0;
             position: relative;
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
         ::-webkit-scrollbar {
-            width: 10px;
+            width: 12px;
         }
 
         ::-webkit-scrollbar-track {
@@ -32,8 +37,12 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #3a3a3a;
-            border-radius: 5px;
+            background: linear-gradient(to bottom, #d4a574, #8b6f47);
+            border-radius: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(to bottom, #e8b88a, #a0845a);
         }
 
         header {
@@ -41,26 +50,26 @@
             top: 0;
             width: 100%;
             z-index: 1000;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(240, 240, 240, 0.08);
-            padding: 2rem 0;
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(30px);
+            border-bottom: 1px solid rgba(212, 165, 116, 0.15);
+            padding: 1.5rem 0;
         }
 
         nav {
-            max-width: 1900px;
+            max-width: 100%;
             margin: 0 auto;
-            padding: 0 4rem;
+            padding: 0 clamp(1.5rem, 5vw, 4rem);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            font-size: 1.8rem;
+            font-size: clamp(1.4rem, 4vw, 2rem);
             font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            letter-spacing: 4px;
+            font-weight: 800;
+            letter-spacing: 3px;
             color: #f0f0f0;
             text-transform: uppercase;
         }
@@ -68,13 +77,13 @@
         nav ul {
             display: flex;
             list-style: none;
-            gap: 5rem;
+            gap: clamp(2rem, 5vw, 5rem);
         }
 
         nav a {
             color: #f0f0f0;
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: clamp(0.75rem, 2vw, 0.9rem);
             letter-spacing: 2px;
             transition: all 0.3s ease;
             position: relative;
@@ -85,11 +94,11 @@
         nav a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: -6px;
             left: 0;
             width: 100%;
-            height: 1px;
-            background: #f0f0f0;
+            height: 2px;
+            background: linear-gradient(to right, #d4a574, #8b6f47);
             transform: scaleX(0);
             transform-origin: right;
             transition: transform 0.3s ease;
@@ -102,11 +111,12 @@
 
         .hero {
             min-height: 100vh;
-            background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            padding-top: 100px;
+            padding-top: 120px;
+            padding-bottom: 60px;
             position: relative;
             overflow: hidden;
         }
@@ -114,36 +124,57 @@
         .hero::before {
             content: '';
             position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 1000px;
-            height: 1000px;
-            background: radial-gradient(circle, rgba(240, 240, 240, 0.05) 0%, transparent 70%);
+            top: -30%;
+            right: -15%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(212, 165, 116, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 165, 116, 0.05) 0%, transparent 70%);
             border-radius: 50%;
             filter: blur(60px);
+            animation: float 25s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, -30px); }
         }
 
         .hero-content {
             text-align: left;
             z-index: 2;
-            max-width: 900px;
-            padding: 4rem;
+            max-width: 100%;
+            padding: clamp(2rem, 5vw, 4rem);
+            width: 100%;
         }
 
         h1 {
-            font-size: 7rem;
+            font-size: clamp(2.5rem, 8vw, 7rem);
             font-family: 'Playfair Display', serif;
-            font-weight: 800;
-            letter-spacing: -1px;
+            font-weight: 900;
+            letter-spacing: -2px;
             margin-bottom: 1.5rem;
-            line-height: 0.9;
+            line-height: 0.95;
             color: #f0f0f0;
+            text-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
         }
 
         .tagline {
-            font-size: 1.15rem;
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
             letter-spacing: 3px;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
             font-weight: 300;
             color: #b0b0b0;
             text-transform: uppercase;
@@ -151,19 +182,20 @@
 
         .cta-button {
             display: inline-block;
-            padding: 1.5rem 4rem;
-            background: transparent;
-            color: #f0f0f0;
+            padding: clamp(1rem, 2vw, 1.5rem) clamp(2rem, 5vw, 4rem);
+            background: linear-gradient(135deg, #d4a574 0%, #8b6f47 100%);
+            color: #0a0a0a;
             text-decoration: none;
             letter-spacing: 3px;
-            font-weight: 600;
-            transition: all 0.4s ease;
-            border: 1px solid #f0f0f0;
+            font-weight: 700;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 2px solid #d4a574;
             text-transform: uppercase;
-            font-size: 0.8rem;
+            font-size: clamp(0.75rem, 2vw, 0.9rem);
             cursor: pointer;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 10px 30px rgba(212, 165, 116, 0.2);
         }
 
         .cta-button::before {
@@ -173,43 +205,57 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: #f0f0f0;
+            background: rgba(255, 255, 255, 0.1);
             transition: left 0.4s ease;
             z-index: -1;
         }
 
-        .cta-button:hover::before {
-            left: 0;
-        }
-
         .cta-button:hover {
-            color: #0a0a0a;
+            transform: translateY(-3px);
+            box-shadow: 0 20px 50px rgba(212, 165, 116, 0.3);
+            background: linear-gradient(135deg, #e8b88a 0%, #a0845a 100%);
         }
 
         .section {
-            padding: 10rem 4rem;
+            padding: clamp(4rem, 10vw, 10rem) clamp(1.5rem, 5vw, 4rem);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(212, 165, 116, 0.3), transparent);
         }
 
         .container {
-            max-width: 1900px;
+            max-width: 100%;
             margin: 0 auto;
+            padding: 0 clamp(1rem, 3vw, 2rem);
         }
 
         .section-top {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 5rem;
+            margin-bottom: 4rem;
+            gap: 3rem;
+            flex-wrap: wrap;
         }
 
         .section-info {
-            max-width: 400px;
+            flex: 1;
+            min-width: 250px;
         }
 
         .section-title {
-            font-size: 4.5rem;
+            font-size: clamp(2rem, 6vw, 4.5rem);
             font-family: 'Playfair Display', serif;
-            font-weight: 800;
+            font-weight: 900;
             letter-spacing: -1px;
             color: #f0f0f0;
             margin-bottom: 1rem;
@@ -217,20 +263,48 @@
         }
 
         .section-subtitle {
-            font-size: 0.95rem;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
             color: #888;
             letter-spacing: 2px;
             text-transform: uppercase;
             font-weight: 400;
-            max-width: 300px;
+            max-width: 400px;
+            line-height: 1.6;
         }
 
         .gallery-master {
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            grid-template-rows: repeat(4, 200px);
-            gap: 1.5rem;
-            grid-auto-flow: dense;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: clamp(1rem, 3vw, 2rem);
+            width: 100%;
+        }
+
+        @media (min-width: 1200px) {
+            .gallery-master {
+                grid-template-columns: repeat(6, 1fr);
+                grid-template-rows: repeat(auto, 250px);
+                grid-auto-flow: dense;
+            }
+
+            .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+            .gallery-item:nth-child(2) { grid-column: span 1; grid-row: span 2; }
+            .gallery-item:nth-child(3) { grid-column: span 1; }
+            .gallery-item:nth-child(4) { grid-column: span 1; }
+            .gallery-item:nth-child(5) { grid-column: span 1; }
+            .gallery-item:nth-child(6) { grid-column: span 1; grid-row: span 2; }
+            .gallery-item:nth-child(7) { grid-column: span 2; }
+            .gallery-item:nth-child(8) { grid-column: span 2; grid-row: span 2; }
+            .gallery-item:nth-child(9) { grid-column: span 1; }
+            .gallery-item:nth-child(10) { grid-column: span 1; }
+            .gallery-item:nth-child(11) { grid-column: span 1; grid-row: span 2; }
+            .gallery-item:nth-child(12) { grid-column: span 1; }
+            .gallery-item:nth-child(13) { grid-column: span 1; }
+            .gallery-item:nth-child(14) { grid-column: span 2; }
+            .gallery-item:nth-child(15) { grid-column: span 1; }
+            .gallery-item:nth-child(16) { grid-column: span 1; }
+            .gallery-item:nth-child(17) { grid-column: span 2; }
+            .gallery-item:nth-child(18) { grid-column: span 1; }
+            .gallery-item:nth-child(19) { grid-column: span 2; grid-row: span 2; }
         }
 
         .gallery-item {
@@ -238,61 +312,42 @@
             overflow: hidden;
             background: #1a1a1a;
             cursor: pointer;
-            border: 1px solid rgba(240, 240, 240, 0.1);
+            border: 1px solid rgba(212, 165, 116, 0.15);
             transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 1rem;
-            grid-column: auto;
-            grid-row: span 1;
+            padding: clamp(0.5rem, 2vw, 1rem);
+            aspect-ratio: 1;
+            min-height: 200px;
         }
 
-        .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
-        .gallery-item:nth-child(2) { grid-column: span 1; grid-row: span 2; }
-        .gallery-item:nth-child(3) { grid-column: span 1; }
-        .gallery-item:nth-child(4) { grid-column: span 1; }
-        .gallery-item:nth-child(5) { grid-column: span 1; }
-        .gallery-item:nth-child(6) { grid-column: span 1; grid-row: span 2; }
-        .gallery-item:nth-child(7) { grid-column: span 2; }
-        .gallery-item:nth-child(8) { grid-column: span 2; grid-row: span 2; }
-        .gallery-item:nth-child(9) { grid-column: span 1; }
-        .gallery-item:nth-child(10) { grid-column: span 1; }
-        .gallery-item:nth-child(11) { grid-column: span 1; grid-row: span 2; }
-        .gallery-item:nth-child(12) { grid-column: span 1; }
-        .gallery-item:nth-child(13) { grid-column: span 1; }
-        .gallery-item:nth-child(14) { grid-column: span 2; }
-        .gallery-item:nth-child(15) { grid-column: span 1; }
-        .gallery-item:nth-child(16) { grid-column: span 1; }
-        .gallery-item:nth-child(17) { grid-column: span 2; }
-        .gallery-item:nth-child(18) { grid-column: span 1; }
-        .gallery-item:nth-child(19) { grid-column: span 2; grid-row: span 2; }
-
         .gallery-item:hover {
-            border-color: rgba(240, 240, 240, 0.4);
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+            border-color: rgba(212, 165, 116, 0.5);
+            box-shadow: 0 30px 80px rgba(212, 165, 116, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
             transform: translateY(-8px);
         }
 
         .gallery-image {
             width: 100%;
             height: 100%;
-            object-fit: contain;
-            transition: transform 0.6s ease, filter 0.6s ease;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.6s ease;
+            display: block;
         }
 
         .gallery-item:hover .gallery-image {
             transform: scale(1.08);
-            filter: brightness(1.15);
+            filter: brightness(1.15) contrast(1.05);
         }
 
         .gallery-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(10, 10, 10, 0) 0%, rgba(10, 10, 10, 0.7) 100%);
+            background: linear-gradient(135deg, rgba(10, 10, 10, 0) 0%, rgba(10, 10, 10, 0.8) 100%);
             display: flex;
             align-items: flex-end;
-            padding: 2rem;
+            padding: clamp(1rem, 3vw, 2rem);
             opacity: 0;
             transition: opacity 0.4s ease;
         }
@@ -302,36 +357,44 @@
         }
 
         .gallery-label {
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
             font-family: 'Playfair Display', serif;
-            font-weight: 600;
+            font-weight: 700;
             color: #f0f0f0;
             letter-spacing: 1px;
         }
 
         .about {
             background: #0a0a0a;
-            padding: 8rem 4rem;
-            border-top: 1px solid rgba(240, 240, 240, 0.08);
+            padding: clamp(4rem, 10vw, 8rem) clamp(1.5rem, 5vw, 4rem);
+            border-top: 1px solid rgba(212, 165, 116, 0.15);
         }
 
         .about-wrapper {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 6rem;
+            gap: clamp(2rem, 5vw, 6rem);
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .about-wrapper {
+                grid-template-columns: 1fr;
+            }
         }
 
         .about-left h2 {
-            font-size: 3.5rem;
+            font-size: clamp(1.8rem, 5vw, 3.5rem);
             font-family: 'Playfair Display', serif;
-            font-weight: 800;
+            font-weight: 900;
             color: #f0f0f0;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             letter-spacing: -1px;
         }
 
         .about-left p {
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 2vw, 1rem);
             line-height: 1.8;
             color: #bbb;
             margin-bottom: 1.5rem;
@@ -347,7 +410,7 @@
 
         .service-item {
             padding: 1.5rem 0;
-            border-bottom: 1px solid rgba(240, 240, 240, 0.1);
+            border-bottom: 1px solid rgba(212, 165, 116, 0.15);
             transition: all 0.3s ease;
         }
 
@@ -355,46 +418,51 @@
             border-bottom: none;
         }
 
+        .service-item:hover {
+            padding-left: 1rem;
+            border-left: 3px solid #d4a574;
+        }
+
         .service-name {
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2vw, 1.1rem);
             font-family: 'Playfair Display', serif;
             color: #f0f0f0;
             margin-bottom: 0.5rem;
-            font-weight: 600;
+            font-weight: 700;
             letter-spacing: 0.5px;
         }
 
         .service-item p {
-            font-size: 0.95rem;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
             color: #999;
             font-weight: 300;
         }
 
         footer {
             background: #0a0a0a;
-            border-top: 1px solid rgba(240, 240, 240, 0.08);
-            padding: 6rem 4rem;
+            border-top: 1px solid rgba(212, 165, 116, 0.15);
+            padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 5vw, 4rem);
         }
 
         .footer-wrapper {
-            max-width: 1900px;
+            max-width: 100%;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 4rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: clamp(2rem, 5vw, 4rem);
         }
 
         .footer-section h3 {
-            font-size: 0.95rem;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
             letter-spacing: 2px;
             color: #f0f0f0;
             margin-bottom: 2rem;
             text-transform: uppercase;
-            font-weight: 600;
+            font-weight: 700;
         }
 
         .footer-text {
-            font-size: 0.95rem;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
             line-height: 1.8;
             color: #bbb;
             font-weight: 300;
@@ -405,7 +473,7 @@
         }
 
         .contact-footer p {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
         }
 
         .contact-footer strong {
@@ -416,53 +484,125 @@
         .whatsapp-link {
             display: inline-block;
             margin-top: 2rem;
-            padding: 1rem 2.5rem;
-            background: transparent;
-            color: #f0f0f0;
+            padding: clamp(0.9rem, 2vw, 1rem) clamp(1.5rem, 4vw, 2.5rem);
+            background: linear-gradient(135deg, #d4a574 0%, #8b6f47 100%);
+            color: #0a0a0a;
             text-decoration: none;
             letter-spacing: 2px;
-            font-weight: 600;
-            border: 1px solid #f0f0f0;
+            font-weight: 700;
+            border: 2px solid #d4a574;
             text-transform: uppercase;
-            font-size: 0.8rem;
-            transition: all 0.4s ease;
+            font-size: clamp(0.75rem, 2vw, 0.8rem);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 10px 30px rgba(212, 165, 116, 0.2);
         }
 
         .whatsapp-link:hover {
-            background: #f0f0f0;
-            color: #0a0a0a;
+            transform: translateY(-3px);
+            box-shadow: 0 20px 50px rgba(212, 165, 116, 0.3);
+            background: linear-gradient(135deg, #e8b88a 0%, #a0845a 100%);
         }
 
         .footer-bottom {
             grid-column: 1 / -1;
             text-align: center;
-            padding-top: 3rem;
-            border-top: 1px solid rgba(240, 240, 240, 0.1);
-            font-size: 0.85rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(212, 165, 116, 0.15);
+            font-size: clamp(0.75rem, 2vw, 0.85rem);
             color: #777;
             letter-spacing: 1px;
             font-weight: 300;
         }
 
-        @media (max-width: 1200px) {
-            h1 { font-size: 4.5rem; }
-            .section-title { font-size: 3rem; }
-            .gallery-master { grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(auto, 150px); }
-            .gallery-item { grid-column: span 1; grid-row: span 1; }
-            .footer-wrapper { grid-template-columns: 1fr; }
-            .footer-bottom { grid-column: 1; }
+        @media (max-width: 1024px) {
+            .hero {
+                padding-top: 100px;
+            }
+
+            .section {
+                padding: 5rem clamp(1.5rem, 4vw, 3rem);
+            }
+
+            .gallery-master {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+                grid-template-rows: auto !important;
+                grid-auto-flow: row !important;
+            }
+
+            .gallery-item {
+                grid-column: auto !important;
+                grid-row: auto !important;
+            }
         }
 
         @media (max-width: 768px) {
-            h1 { font-size: 3rem; }
-            .tagline { font-size: 0.95rem; }
-            .section-title { font-size: 2rem; }
-            .section { padding: 5rem 2rem; }
-            nav { padding: 0 1.5rem; }
-            nav ul { gap: 2rem; }
-            .gallery-master { grid-template-columns: 1fr; gap: 1rem; }
-            .gallery-item { grid-column: 1 !important; grid-row: auto !important; aspect-ratio: 1; }
-            .about-wrapper { grid-template-columns: 1fr; gap: 3rem; }
+            header {
+                padding: 1rem 0;
+            }
+
+            nav {
+                padding: 0 1.5rem;
+            }
+
+            nav ul {
+                gap: 1.5rem;
+            }
+
+            .hero {
+                padding-top: 80px;
+                padding-bottom: 40px;
+            }
+
+            .hero-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .section {
+                padding: 3rem 1.5rem;
+            }
+
+            .section-top {
+                flex-direction: column;
+                margin-bottom: 2rem;
+            }
+
+            .gallery-master {
+                grid-template-columns: 1fr !important;
+                gap: 1rem;
+            }
+
+            .gallery-item {
+                grid-column: 1 !important;
+                grid-row: auto !important;
+                min-height: 250px;
+            }
+
+            .about-wrapper {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                grid-column: 1;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav ul {
+                gap: 1rem;
+            }
+
+            .section {
+                padding: 2rem 1rem;
+            }
+
+            .gallery-item {
+                min-height: 200px;
+            }
         }
     </style>
 </head>
@@ -480,8 +620,8 @@
 
     <section class="hero">
         <div class="hero-content">
-            <h1>Galeria de Arte Visual</h1>
-            <p class="tagline">Criações que exploram design, cor e narrativa</p>
+            <h1>Galeria Premium</h1>
+            <p class="tagline">Design sofisticado que vende</p>
             <a href="#galeria" class="cta-button">Explorar Trabalhos</a>
         </div>
     </section>
@@ -490,123 +630,81 @@
         <div class="container">
             <div class="section-top">
                 <div class="section-info">
-                    <h2 class="section-title">Obra</h2>
+                    <h2 class="section-title">Portfólio</h2>
                     <p class="section-subtitle">Seleção de projetos que refletem pesquisa visual, inovação criativa e execução impecável</p>
                 </div>
             </div>
             <div class="gallery-master">
                 <div class="gallery-item">
-                    <img src="https://picsum.photos/seed/1/800/800" alt="Simples Fresco" class="gallery-image">
-                    <div class="gallery-overlay">
-                        <div class="gallery-label">Simples Fresco</div>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://picsum.photos/seed/2/800/800" alt="Feito com Amor" class="gallery-image">
-                    <div class="gallery-overlay">
-                        <div class="gallery-label">Feito com Amor</div>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://picsum.photos/seed/3/800/800" alt="Sorriso Merece Melhor" class="gallery-image">
-                    <div class="gallery-overlay">
-                        <div class="gallery-label">Sorriso Merece Melhor</div>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://picsum.photos/seed/4/800/800" alt="Lealdade que Inspira" class="gallery-image">
-                    <div class="gallery-overlay">
-                        <div class="gallery-label">Lealdade que Inspira</div>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://picsum.photos/seed/5/800/800" alt="Essência" class="gallery-image">
-                    <div class="gallery-overlay">
-                        <div class="gallery-label">Essência</div>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://picsum.photos/seed/6/800/800" alt="Construo Hoje" class="gallery-image">
-                    <div class="gallery-overlay">
-                        <div class="gallery-label">Construo Hoje</div>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://picsum.photos/seed/7/800/800" alt="Designs Personalizados" class="gallery-image">
+                    <img src="img/Designs.PNG" alt="Designs Personalizados" class="gallery-image">
                     <div class="gallery-overlay">
                         <div class="gallery-label">Designs Personalizados</div>
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://picsum.photos/seed/8/800/800" alt="Word Tecnologia" class="gallery-image">
+                    <img src="img/Maximalismo.PNG" alt="Maximalismo Fashion" class="gallery-image">
                     <div class="gallery-overlay">
-                        <div class="gallery-label">Word Tecnologia</div>
+                        <div class="gallery-label">Maximalismo</div>
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://picsum.photos/seed/9/800/800" alt="BC Express" class="gallery-image">
+                    <img src="img/70da473c-1b17-4e80-8a6b-6d9524937974.PNG" alt="Simples Fresco" class="gallery-image">
                     <div class="gallery-overlay">
-                        <div class="gallery-label">BC Express</div>
+                        <div class="gallery-label">Simples Fresco</div>
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://picsum.photos/seed/10/800/800" alt="Dentistas 24hs" class="gallery-image">
-                    <div class="gallery-overlay">
-                        <div class="gallery-label">Dentistas 24hs</div>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://picsum.photos/seed/11/800/800" alt="Luxury Mindset" class="gallery-image">
-                    <div class="gallery-overlay">
-                        <div class="gallery-label">Luxury Mindset</div>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://picsum.photos/seed/12/800/800" alt="Design Studio" class="gallery-image">
-                    <div class="gallery-overlay">
-                        <div class="gallery-label">Design Studio</div>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://picsum.photos/seed/13/800/800" alt="Creative Collections" class="gallery-image">
-                    <div class="gallery-overlay">
-                        <div class="gallery-label">Creative Collections</div>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://picsum.photos/seed/14/800/800" alt="Happy Designs" class="gallery-image">
-                    <div class="gallery-overlay">
-                        <div class="gallery-label">Happy Designs</div>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://picsum.photos/seed/15/800/800" alt="Golden Hour" class="gallery-image">
+                    <img src="img/GOLDEN HOUR.PNG" alt="Golden Hour" class="gallery-image">
                     <div class="gallery-overlay">
                         <div class="gallery-label">Golden Hour</div>
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://picsum.photos/seed/16/800/800" alt="Maximalism" class="gallery-image">
+                    <img src="img/Blue Illustrative Technology Innovation Poster (Post para Instagram (45)).PNG" alt="Word Tecnologia" class="gallery-image">
                     <div class="gallery-overlay">
-                        <div class="gallery-label">Maximalism</div>
+                        <div class="gallery-label">Word Tecnologia</div>
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://picsum.photos/seed/17/800/800" alt="Custom Editions" class="gallery-image">
+                    <img src="img/C263945D-DAEC-4F0D-92BB-EAF6C45A220C.PNG" alt="Projeto Premium" class="gallery-image">
                     <div class="gallery-overlay">
-                        <div class="gallery-label">Custom Editions</div>
+                        <div class="gallery-label">Projeto Premium</div>
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://picsum.photos/seed/18/800/800" alt="AI Marketing" class="gallery-image">
+                    <img src="img/68C04A46-1314-4CD6-A88F-2A978EE240C5.PNG" alt="Criação Exclusiva" class="gallery-image">
                     <div class="gallery-overlay">
-                        <div class="gallery-label">AI Marketing</div>
+                        <div class="gallery-label">Criação Exclusiva</div>
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://picsum.photos/seed/19/800/800" alt="Tech Innovation" class="gallery-image">
+                    <img src="img/b2b53c50-99a6-4847-b830-575ade29edfb.PNG" alt="Arte Visual" class="gallery-image">
                     <div class="gallery-overlay">
-                        <div class="gallery-label">Tech Innovation</div>
+                        <div class="gallery-label">Arte Visual</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img/79d095f8-616d-49d7-b65d-cc1f18a29cc9.PNG" alt="Design Inovador" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-label">Design Inovador</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img/bee6018d-8c8f-4474-bf8e-9663c8b05217.PNG" alt="Composição Moderna" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-label">Composição Moderna</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img/8ae61bd2-c1fd-4fc3-8dbf-7ebc7dfe886c.PNG" alt="Trabalho Premium" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-label">Trabalho Premium</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img/5aba3c77-b49e-463c-a5cb-ff43bb6a9a1c.PNG" alt="Design Sofisticado" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-label">Design Sofisticado</div>
                     </div>
                 </div>
             </div>
@@ -614,74 +712,69 @@
     </section>
 
     <section id="sobre" class="about">
-        <div class="container">
-            <div class="about-wrapper">
-                <div class="about-left">
-                    <h2>Sobre a Prática</h2>
-                    <p>Sou artista gráfica especializada em criar trabalhos visuais que transitam entre design estratégico e experimentação criativa. Cada projeto é resultado de pesquisa profunda sobre marca, público e contexto visual contemporâneo.</p>
-                    <p>Meu trabalho busca alcançar excelência estética sem abrir mão da funcionalidade, combinando rigor conceitual com liberdade artística.</p>
-                </div>
-                <div class="about-right">
-                    <h3 style="font-size: 1.1rem; color: #f0f0f0; margin-bottom: 2rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600;">Áreas de Trabalho</h3>
-                    <div class="services-list">
-                        <div class="service-item">
-                            <div class="service-name">Design Gráfico</div>
-                            <p>Criações autorais, projetos comerciais e trabalhos conceituais</p>
-                        </div>
-                        <div class="service-item">
-                            <div class="service-name">Identidade de Marca</div>
-                            <p>Sistemas visuais coesos com personalidade e relevância</p>
-                        </div>
-                        <div class="service-item">
-                            <div class="service-name">Direção Criativa</div>
-                            <p>Conceitos visuais estratégicos e execução elevada</p>
-                        </div>
-                        <div class="service-item">
-                            <div class="service-name">Design de Interface</div>
-                            <p>Experiências digitais imersivas e funcionais</p>
-                        </div>
+        <div class="about-wrapper">
+            <div class="about-left">
+                <h2>Sobre</h2>
+                <p>Sou uma designer visual apaixonada por criar experiências visuais que não apenas impressionam, mas também vendem. Cada projeto é uma oportunidade de contar uma história através de cores, tipografia e composição.</p>
+                <p>Meu trabalho combina sofisticação, inovação e execução impecável para entregar designs que elevam sua marca.</p>
+            </div>
+            <div class="about-right">
+                <div class="services-list">
+                    <div class="service-item">
+                        <div class="service-name">Design Personalizado</div>
+                        <p>Criações únicas e exclusivas adaptadas ao seu negócio e público-alvo.</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-name">Identidade Visual</div>
+                        <p>Desenvolvimento completo de marca, logotipo e direcionamento visual.</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-name">Conteúdo Visual</div>
+                        <p>Produção de materiais visuais de alta qualidade para redes sociais e marketing.</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-name">Edições Premium</div>
+                        <p>Edições fotográficas profissionais e retoque de alta qualidade.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contato">
-        <footer>
-            <div class="footer-wrapper">
-                <div class="footer-section">
-                    <h3>Contato</h3>
-                    <div class="contact-footer">
-                        <p><strong>Júlia Assis</strong></p>
-                        <p>Artista Gráfica e Designer</p>
-                        <p style="margin-top: 1rem;">Araxá, MG</p>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h3>Informações</h3>
-                    <p class="footer-text">Designer criativa com foco em projetos que transformam marcas e exploram novas formas de comunicação visual.</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Colaboração</h3>
-                    <p class="footer-text">Disponível para projetos, parcerias e consultorias criativas.</p>
-                    <a href="https://wa.me/5534988086470?text=Olá%20Júlia,%20gostaria%20de%20conhecer%20seus%20serviços!" class="whatsapp-link">WhatsApp</a>
-                </div>
-                <div class="footer-bottom">
-                    <p>© 2024 Júlia Assis. Todos os direitos reservados.</p>
+    <footer id="contato">
+        <div class="footer-wrapper">
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <div class="contact-footer">
+                    <p><strong>Email:</strong> julia@assis.com</p>
+                    <p><strong>Telefone:</strong> (11) 99999-9999</p>
+                    <p><strong>Localização:</strong> São Paulo, SP</p>
                 </div>
             </div>
-        </footer>
-    </section>
-
-    <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-    </script>
+            <div class="footer-section">
+                <h3>Redes Sociais</h3>
+                <div class="footer-text">
+                    <p>Instagram: @juliassis</p>
+                    <p>LinkedIn: Júlia Assis</p>
+                    <p>Portfolio: juliassis.com</p>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Serviços</h3>
+                <div class="footer-text">
+                    <p>Design Personalizado</p>
+                    <p>Identidade Visual</p>
+                    <p>Conteúdo Visual</p>
+                    <p>Edições Premium</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <a href="https://wa.me/5511999999999" class="whatsapp-link">Fale Conosco</a>
+        </div>
+        <div class="footer-bottom" style="margin-top: 2rem;">
+            © 2024 Júlia Assis. Todos os direitos reservados.
+        </div>
+    </footer>
 </body>
+</html>
